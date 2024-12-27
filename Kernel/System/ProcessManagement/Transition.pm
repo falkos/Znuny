@@ -1120,6 +1120,11 @@ sub DebugLog {
     my $LogObject    = $Kernel::OM->Get('Kernel::System::Log');
     my $ConfigObject = $Kernel::OM->Get('Kernel::Config');
 
+    if ( ! $Self->{TransitionDebug} ) {
+        # The debug is deactivated, so no debug log is required.
+        return 1;
+    }
+
     $Param{TransitionName} //= '';
 
     my $Message = "Transition:'$Param{TransitionName}'";
